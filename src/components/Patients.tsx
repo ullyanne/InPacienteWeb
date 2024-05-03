@@ -1,53 +1,8 @@
-import { faArrowLeft, faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
+import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons/faMagnifyingGlass";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { SortingState, createColumnHelper, flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table";
-import { ArrowUpDown } from "lucide-react";
-import { useState } from "react";
-
-export type User = {
-  name: string;
-  cpf: string;
-  sus_card: string;
-  phone_number: string;
-  address: string;
-}
-
-const columnHelper = createColumnHelper<User>();
-
-const columns = [
-  columnHelper.accessor('name', {
-    header: ({ column }) => {
-      return(
-        <button onClick={() => column.toggleSorting(column.getIsSorted() === "asc")} className="flex" >
-          <span>NOME</span>
-          <span>
-            <ArrowUpDown className="ml-2 h-4 w-4"/>
-          </span>
-          
-        </button>
-      )
-    },
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('cpf', {
-    header: () => "CPF",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('sus_card', {
-    header: () => "Cartão do SUS",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('phone_number', {
-    header: () => "Telefone",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('address', {
-    header: () => "Endereço",
-    cell: (info) => info.getValue(),
-  }),
-]
+import { DataTable } from "./DataTable";
+import { PatientsColumns } from "./PatientsColumns";
 
 export function Patients() {
   let data = []
@@ -68,27 +23,10 @@ export function Patients() {
       name: "aline",
       cpf: "000.000.000-00",
       sus_card: "000000000",
-      phone_number: "(82) 99950-2695",
-      address: "rua do algodão doce"
+      phone_number: "(82) 55555-5555",
+      address: "av. brasil, n° 8"
     }
   )
-
-
-  const [users, setUsers] = useState(data)
-  const [sorting, setSorting] = useState<SortingState>([])
-
-  const table = useReactTable({
-    data: users,
-    columns,
-    debugTable: true,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    state: {
-      sorting: sorting,
-    },
-    onSortingChange: setSorting,
-  })
 
   return (
     <div className="mt-[70px] ml-20">
@@ -110,43 +48,7 @@ export function Patients() {
         </div>
       </div>
 
-      <div>
-        <table className="table-fixed min-w-[1000px] min-h-[300px] divide-y divide-gray-200 border border-collapse overflow-hidden text-left rounded-xl shadow-sm ">
-          <thead className="text-xs text-gray-700 uppercase bg-white/45">
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th key={header.id} className="px-6 py-3">
-                    <div>
-                      {flexRender(header.column.columnDef.header, header.getContext())}
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody>
-            {table.getRowModel().rows.map((row) => (
-              <tr key={row.id} className="even:bg-white/65 border-b bg-white">
-                {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className={"px-6 py-4 text-sm " + (cell.column.id === "name" ? "font-semibold" : "text-slate-600/80")} >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <nav className="flex flex-row-reverse w-[1000px] gap-2 pl-1 pt-3">
-          <button className="bg-white border border-gray-300 rounded py-[2px] px-2 disabled:opacity-40" disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>
-            <FontAwesomeIcon icon={faArrowRight} fontSize={"0.9em"} />
-          </button>
-          <button className="bg-white border border-gray-300 rounded py-[2px] px-2 disabled:opacity-40" disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>
-            <FontAwesomeIcon icon={faArrowLeft} fontSize={"0.9em"} />
-          </button>
-        </nav>
-      </div>
+      <DataTable columns={PatientsColumns} data={data} />
 
     </div>
   )
