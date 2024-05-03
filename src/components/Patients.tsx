@@ -55,10 +55,10 @@ export function Patients() {
   for (let i = 0; i <= 13; i++) {
     data.push(
       {
-        name: "ullyanne julia freire patriota",
+        name: "Tiago Castro Ribeiro",
         cpf: "000.000.000-00",
         sus_card: "000000000",
-        phone_number: "(82) 99950-2695",
+        phone_number: "(82) 99999-9999",
         address: "rua do algodão doce"
       })
   }
