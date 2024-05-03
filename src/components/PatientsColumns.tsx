@@ -1,5 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
+import { Dropdown } from "./Dropdown";
 
 export type Patient = {
   name: string;
@@ -45,4 +46,13 @@ export const PatientsColumns: ColumnDef<Patient>[] = [
     header: "Endereço",
     cell: (info) => info.getValue(),
   },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      console.log(row.original)
+      return (        
+        <Dropdown />
+      )
+    }
+  }
 ]

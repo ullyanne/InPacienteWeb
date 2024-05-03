@@ -1,21 +1,21 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
+import { Dropdown } from "./Dropdown";
 
 export type Appointment = {
-  name: string;
-  cpf: string;
-  sus_card: string;
-  phone_number: string;
-  address: string;
+  doctorName: string;
+  doctorSpecialty: string;
+  patientName: string;
+  date: string;
 }
 
 export const AppointmentsColumns: ColumnDef<Appointment>[] = [
   {
-    accessorKey: "name",
+    accessorKey: "doctorName",
     header: ({ column }) => {
       return (
         <button onClick={() => column.toggleSorting(column.getIsSorted() === "asc")} className="flex" >
-          <span>NOME</span>
+          <span>MÉDICO</span>
           <span>
             <ArrowUpDown className="ml-2 h-4 w-4" />
           </span>
@@ -26,23 +26,57 @@ export const AppointmentsColumns: ColumnDef<Appointment>[] = [
     cell: (info) => info.getValue(),
   },
   {
-    accessorKey: "cpf",
-    header: "CPF",
+    accessorKey: "doctorSpecialty",
+    header: ({ column }) => {
+      return (
+        <button onClick={() => column.toggleSorting(column.getIsSorted() === "asc")} className="flex" >
+          <span>ESPECIALIDADE</span>
+          <span>
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </span>
+
+        </button>
+      )
+    },
     cell: (info) => info.getValue(),
   },
   {
-    accessorKey: "sus_card",
-    header: "Cartão do SUS",
+    accessorKey: "patientName",
+    header: ({ column }) => {
+      return (
+        <button onClick={() => column.toggleSorting(column.getIsSorted() === "asc")} className="flex" >
+          <span>PACIENTE</span>
+          <span>
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </span>
+
+        </button>
+      )
+    },
     cell: (info) => info.getValue(),
   },
   {
-    accessorKey: "phone_number",
-    header: "Telefone",
+    accessorKey: "date",
+    header: ({ column }) => {
+      return (
+        <button onClick={() => column.toggleSorting(column.getIsSorted() === "asc")} className="flex" >
+          <span>DATA</span>
+          <span>
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </span>
+
+        </button>
+      )
+    },
     cell: (info) => info.getValue(),
   },
   {
-    accessorKey: "address",
-    header: "Endereço",
-    cell: (info) => info.getValue(),
-  },
+    id: "actions",
+    cell: ({ row }) => {
+      console.log(row.original)
+      return (
+        <Dropdown />
+      )
+    }
+  }
 ]
