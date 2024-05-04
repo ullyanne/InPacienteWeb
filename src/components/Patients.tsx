@@ -1,32 +1,27 @@
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DataTable } from "./DataTable";
-import { PatientsColumns } from "./PatientsColumns";
+import { Patient, PatientsColumns } from "./PatientsColumns";
 import { SearchBar } from "./SearchBar";
+import { useEffect, useState } from "react";
+import { api } from "../api/api";
 
 export function Patients() {
-  let data = []
+  const [patientsData, setPatientsData] = useState<Patient[]>([])
 
-  for (let i = 0; i <= 13; i++) {
-    data.push(
-      {
-        name: "Tiago Castro Ribeiro",
-        cpf: "000.000.000-00",
-        sus_card: "000000000",
-        phone_number: "(82) 99999-9999",
-        address: "rua do algodão doce"
-      })
+  async function getPatientsData() {
+    try {
+      const response = await api.get('/patients')
+      setPatientsData(response.data.patients)
+    }
+    catch (e) {
+      console.log(e)
+    }
   }
 
-  data.push(
-    {
-      name: "aline",
-      cpf: "000.000.000-00",
-      sus_card: "000000000",
-      phone_number: "(82) 55555-5555",
-      address: "av. brasil, n° 8"
-    }
-  )
+  useEffect(() => {
+    getPatientsData()
+  }, [])
 
   return (
     <div className="mt-[70px] ml-20">
@@ -45,7 +40,7 @@ export function Patients() {
         </div>
       </div>
 
-      <DataTable columns={PatientsColumns} data={data} />
+      <DataTable columns={PatientsColumns} data={patientsData} />
 
     </div>
   )

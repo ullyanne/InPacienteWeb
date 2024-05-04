@@ -5,7 +5,6 @@ import { Dropdown } from "./Dropdown";
 export type Patient = {
   name: string;
   cpf: string;
-  sus_card: string;
   phone_number: string;
   address: string;
 }
@@ -32,12 +31,7 @@ export const PatientsColumns: ColumnDef<Patient>[] = [
     cell: (info) => info.getValue(),
   },
   {
-    accessorKey: "sus_card",
-    header: "Cartão do SUS",
-    cell: (info) => info.getValue(),
-  },
-  {
-    accessorKey: "phone_number",
+    accessorKey: "phoneNumber",
     header: "Telefone",
     cell: (info) => info.getValue(),
   },
