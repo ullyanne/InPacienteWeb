@@ -4,11 +4,12 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as Dialog from "@radix-ui/react-dialog";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 
-interface DropdownProps{
-
+interface DropdownProps {
+  contentId: string
+  onDeleteButton: (contentId: string) => Promise<void>
 }
 
-export function Dropdown() {
+export function Dropdown({ contentId, onDeleteButton }: DropdownProps) {
   return (
     <Dialog.Root >
       <DropdownMenu.Root>
@@ -56,7 +57,7 @@ export function Dropdown() {
           </Dialog.Description>
           <div className="mt-[25px] flex justify-end gap-3">
             <Dialog.Close asChild>
-              <button type="button" className="inline-flex h-[35px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px]  bg-red-600 text-slate-50 border hover:bg-red-500 transition ease-in-out select-none focus-outline:none">
+              <button type="button" onClick={() => onDeleteButton(contentId)} className="inline-flex h-[35px] items-center justify-center rounded-md px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px]  bg-red-600 text-slate-50 border hover:bg-red-500 transition ease-in-out select-none focus-outline:none">
                 Deletar
               </button>
             </Dialog.Close>

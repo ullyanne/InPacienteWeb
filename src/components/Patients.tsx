@@ -6,6 +6,16 @@ import { SearchBar } from "./SearchBar";
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
 
+export async function OnPatientDeleted(patientId: string) {
+  try {
+    const response = await api.delete(`/patients/${patientId}`)
+    window.location.reload();
+  }
+  catch (e){
+    console.log(e)
+  }
+}
+
 export function Patients() {
   const [patientsData, setPatientsData] = useState<Patient[]>([])
 
