@@ -8,20 +8,43 @@ import { api } from "../api/api";
 
 export async function OnPatientDeleted(patientId: string) {
   try {
-    const response = await api.delete(`/patients/${patientId}`)
+    await api.delete(`/patients/${patientId}`)
     window.location.reload();
   }
-  catch (e){
+  catch (e) {
     console.log(e)
   }
 }
 
 export function Patients() {
   const [patientsData, setPatientsData] = useState<Patient[]>([])
+  const [searchQuery, setSearchQuery] = useState<string>('')
 
   async function getPatientsData() {
     try {
       const response = await api.get('/patients')
+      setPatientsData(response.data.patients)
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
+
+  async function handleSearchPatientSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    try {
+      const response = await api.get(`/patients?search=${searchQuery}`)
+      setPatientsData(response.data.patients)
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
+
+  async function handleSearchPatientClearSubmit() {
+    setSearchQuery('')
+    try {
+      const response = await api.get(`/patients?search=''`)
       setPatientsData(response.data.patients)
     }
     catch (e) {
@@ -40,7 +63,7 @@ export function Patients() {
       </div>
 
       <div className="mb-2 flex justify-between w-[1000px] pb-4">
-        <SearchBar />
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSubmit={handleSearchPatientSubmit} handleClearSubmit={handleSearchPatientClearSubmit} />
 
         <div className="flex flex-row-reverse w-[1000px]">
           <button className="bg-teal-200 border border-gray-300 rounded-lg py-2 px-2 hover:bg-teal-300/80 transition ease-in-out select-none delay-75 flex">
