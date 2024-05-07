@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import NotFoundPage from './components/NotFoundPage.tsx'
 import { Patients } from './components/Patients.tsx'
 import { Appointments } from './components/Appointments.tsx'
+import { PatientsCreate } from './components/PatientsCreate.tsx'
+import { Toaster } from 'sonner'
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
         path: '/consultas',
         element: <Appointments />
       },
+      {
+        path: '/pacientes/novo',
+        element: < PatientsCreate />
+      }
     ]
   },
 ]);
@@ -28,5 +34,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <Toaster richColors/>
   </React.StrictMode>,
 )

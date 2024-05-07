@@ -5,6 +5,7 @@ import { Patient, PatientsColumns } from "./PatientsColumns";
 import { SearchBar } from "./SearchBar";
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
+import { NavLink } from "react-router-dom";
 
 export async function OnPatientDeleted(patientId: string) {
   try {
@@ -66,10 +67,10 @@ export function Patients() {
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSubmit={handleSearchPatientSubmit} handleClearSubmit={handleSearchPatientClearSubmit} />
 
         <div className="flex flex-row-reverse w-[1000px]">
-          <button className="bg-teal-200 border border-gray-300 rounded-lg py-2 px-2 hover:bg-teal-300/80 transition ease-in-out select-none delay-75 flex">
+          <NavLink to="pacientes/novo" className="bg-teal-200 border border-gray-300 rounded-lg py-2 px-2 hover:bg-teal-300/80 transition ease-in-out select-none delay-75 flex">
             <FontAwesomeIcon icon={faUserPlus} fontSize={"1.3em"} />
             <span className="pl-2">Novo paciente</span>
-          </button>
+          </NavLink>
         </div>
       </div>
 
