@@ -1,8 +1,10 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Dropdown } from "./Dropdown";
+import { OnAppointmentDeleted } from "./Appointments";
 
 export type Appointment = {
+  id: string
   doctorName: string;
   doctorSpecialty: string;
   patientName: string;
@@ -11,7 +13,7 @@ export type Appointment = {
 
 export const AppointmentsColumns: ColumnDef<Appointment>[] = [
   {
-    accessorKey: "doctorName",
+    accessorKey: "doctor.name",
     header: ({ column }) => {
       return (
         <button onClick={() => column.toggleSorting(column.getIsSorted() === "asc")} className="flex" >
@@ -26,7 +28,7 @@ export const AppointmentsColumns: ColumnDef<Appointment>[] = [
     cell: (info) => info.getValue(),
   },
   {
-    accessorKey: "doctorSpecialty",
+    accessorKey: "doctor.specialty",
     header: ({ column }) => {
       return (
         <button onClick={() => column.toggleSorting(column.getIsSorted() === "asc")} className="flex" >
@@ -41,7 +43,7 @@ export const AppointmentsColumns: ColumnDef<Appointment>[] = [
     cell: (info) => info.getValue(),
   },
   {
-    accessorKey: "patientName",
+    accessorKey: "patient.name",
     header: ({ column }) => {
       return (
         <button onClick={() => column.toggleSorting(column.getIsSorted() === "asc")} className="flex" >
@@ -73,9 +75,8 @@ export const AppointmentsColumns: ColumnDef<Appointment>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      console.log(row.original)
       return (
-        <Dropdown />
+        <Dropdown contentId={row.original.id} onDeleteButton={OnAppointmentDeleted} />
       )
     }
   }
