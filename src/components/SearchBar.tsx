@@ -6,7 +6,7 @@ import React from "react";
 interface SearchBarProps {
   searchQuery: string
   setSearchQuery: (value: string) => void
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   handleClearSubmit: () => Promise<void>
 }
 

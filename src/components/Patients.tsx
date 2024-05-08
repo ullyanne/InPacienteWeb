@@ -1,60 +1,17 @@
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DataTable } from "./DataTable";
-import { Patient, PatientsColumns } from "./PatientsColumns";
+import { PatientsColumns } from "./PatientsColumns";
 import { SearchBar } from "./SearchBar";
-import { useEffect, useState } from "react";
-import { api } from "../api/api";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
-
-export async function OnPatientDeleted(patientId: string) {
-  try {
-    await api.delete(`/patients/${patientId}`)
-    window.location.reload();
-  }
-  catch (e) {
-    console.log(e)
-  }
-}
+import { usePatientsApi } from "../api/patients/PatientsApi";
 
 export function Patients() {
-  const [patientsData, setPatientsData] = useState<Patient[]>([])
-  const [searchQuery, setSearchQuery] = useState<string>('')
-
-  async function getPatientsData() {
-    try {
-      const response = await api.get('/patients')
-      setPatientsData(response.data.patients)
-    }
-    catch (e) {
-      console.log(e)
-    }
-  }
-
-  async function handleSearchPatientSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    try {
-      const response = await api.get(`/patients?search=${searchQuery}`)
-      setPatientsData(response.data.patients)
-    }
-    catch (e) {
-      console.log(e)
-    }
-  }
-
-  async function handleSearchPatientClearSubmit() {
-    setSearchQuery('')
-    try {
-      const response = await api.get(`/patients?search=''`)
-      setPatientsData(response.data.patients)
-    }
-    catch (e) {
-      console.log(e)
-    }
-  }
+  const patientsAPI = usePatientsApi()
 
   useEffect(() => {
-    getPatientsData()
+    patientsAPI.getPatientsData()
   }, [])
 
   return (
@@ -64,7 +21,7 @@ export function Patients() {
       </div>
 
       <div className="mb-2 flex justify-between w-[1000px] pb-4">
-        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} handleSubmit={handleSearchPatientSubmit} handleClearSubmit={handleSearchPatientClearSubmit} />
+        <SearchBar searchQuery={patientsAPI.searchQuery} setSearchQuery={patientsAPI.setSearchQuery} handleSubmit={patientsAPI.handleSearchPatientSubmit} handleClearSubmit={patientsAPI.handleSearchPatientClearSubmit} />
 
         <div className="flex flex-row-reverse w-[1000px]">
           <NavLink to="pacientes/novo" className="bg-teal-200 border border-gray-300 rounded-lg py-2 px-2 hover:bg-teal-300/80 transition ease-in-out select-none delay-75 flex">
@@ -74,7 +31,7 @@ export function Patients() {
         </div>
       </div>
 
-      <DataTable columns={PatientsColumns} data={patientsData} />
+      <DataTable columns={PatientsColumns} data={patientsAPI.patientsData} />
 
     </div>
   )

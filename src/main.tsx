@@ -8,6 +8,7 @@ import { Patients } from './components/Patients.tsx'
 import { Appointments } from './components/Appointments.tsx'
 import { PatientsCreate } from './components/PatientsCreate.tsx'
 import { Toaster } from 'sonner'
+import { PatientAPIProvider } from './api/patients/PatientsApi.tsx'
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Patients />
+        element: <PatientAPIProvider> <Patients /> </PatientAPIProvider>
       },
       {
         path: '/consultas',
@@ -25,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/pacientes/novo',
-        element: < PatientsCreate />
+        element: <PatientsCreate />
       }
     ]
   },
@@ -34,6 +35,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-    <Toaster richColors/>
+    <Toaster richColors />
   </React.StrictMode>,
 )

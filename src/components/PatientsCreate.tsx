@@ -1,10 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form"
 import { api } from "../api/api"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCircleNotch } from "@fortawesome/free-solid-svg-icons/faCircleNotch"
 import { toast } from "sonner"
 
-type PatientFormFields = {
+export type PatientFormFields = {
   name: string
   cpf: string
   phoneNumber: string
@@ -12,11 +10,11 @@ type PatientFormFields = {
 }
 
 export function PatientsCreate() {
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<PatientFormFields>()
+  const { register, handleSubmit, formState: { errors } } = useForm<PatientFormFields>()
 
   const onSubmit: SubmitHandler<PatientFormFields> = async (data) => {
     try {
-      const response = await api.post('/patients', data);
+      await api.post('/patients', data);
 
       toast.success("Paciente criado com sucesso!")
     }
