@@ -19,6 +19,7 @@ export const PatientsColumns: ColumnDef<Patient>[] = [
       )
     },
     cell: (info) => info.getValue(),
+    sortingFn: 'alphanumeric'
   },
   {
     accessorKey: "cpf",
