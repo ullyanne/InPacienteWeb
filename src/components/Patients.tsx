@@ -7,6 +7,13 @@ import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { usePatientsApi } from "../api/patients/PatientsApi";
 
+export type Patient = {
+  name: string;
+  cpf: string;
+  phoneNumber: string | null;
+  address: string;
+}
+
 export function Patients() {
   const patientsAPI = usePatientsApi()
 

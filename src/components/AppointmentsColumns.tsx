@@ -75,8 +75,10 @@ export const AppointmentsColumns: ColumnDef<Appointment>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
+      const editAppointmentPath = "consultas/editar/" + `${row.original.id}`
+      
       return (
-        <Dropdown contentId={row.original.id} onDeleteButton={OnAppointmentDeleted} />
+        <Dropdown contentId={row.original.id} onDeleteButton={OnAppointmentDeleted} editInfoPath={editAppointmentPath}/>
       )
     }
   }

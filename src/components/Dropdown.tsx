@@ -3,13 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as Dialog from "@radix-ui/react-dialog";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
+import { NavLink } from "react-router-dom";
 
 interface DropdownProps {
   contentId: string
   onDeleteButton: (contentId: string) => Promise<void>
+  editInfoPath: string
 }
 
-export function Dropdown({ contentId, onDeleteButton }: DropdownProps) {
+export function Dropdown({ contentId, onDeleteButton, editInfoPath }: DropdownProps) {
   return (
     <Dialog.Root >
       <DropdownMenu.Root>
@@ -27,10 +29,12 @@ export function Dropdown({ contentId, onDeleteButton }: DropdownProps) {
             sideOffset={5}
           >
 
-            <DropdownMenu.Item className="group text-[13px] leading-none rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[highlighted]:bg-gray-100"
-            >
-              Editar{' '}
-            </DropdownMenu.Item>
+            <NavLink to={editInfoPath} >
+              <DropdownMenu.Item className="group text-[13px] leading-none rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[highlighted]:bg-gray-100"
+              >
+                Editar{' '}
+              </DropdownMenu.Item>
+            </NavLink>
 
             <Dialog.Trigger className="w-full" >
               <DropdownMenu.Item className="group text-[13px] leading-none rounded-[3px] flex items-center w-full h-[25px] px-[5px] relative pl-[25px] select-none outline-none  data-[highlighted]:bg-red-100"

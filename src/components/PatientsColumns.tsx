@@ -2,13 +2,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Dropdown } from "./Dropdown";
 import { usePatientsApi } from "../api/patients/PatientsApi";
-
-export type Patient = {
-  name: string;
-  cpf: string;
-  phone_number: string;
-  address: string;
-}
+import { Patient } from "./Patients";
 
 export const PatientsColumns: ColumnDef<Patient>[] = [
   {
@@ -45,8 +39,9 @@ export const PatientsColumns: ColumnDef<Patient>[] = [
     id: "actions",
     cell: ({ row }) => {
       const patientsAPI = usePatientsApi()
-      return (        
-        <Dropdown contentId={row.original.cpf} onDeleteButton={patientsAPI.onPatientDeleted}/>
+      const editPatientPath = "pacientes/editar/" + `${row.original.cpf}`
+      return (
+        <Dropdown contentId={row.original.cpf} onDeleteButton={patientsAPI.onPatientDeleted} editInfoPath={editPatientPath} />
       )
     }
   }
