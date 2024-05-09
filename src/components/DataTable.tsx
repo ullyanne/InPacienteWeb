@@ -1,17 +1,23 @@
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft"
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { ColumnDef, SortingState, flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table"
+import { ColumnDef, PaginationState, SortingState, Updater, flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table"
 import { useState } from "react"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  pagination: PaginationState
+  setPagination: (updater: Updater<PaginationState>) => void
+  rowCount: number
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  pagination,
+  setPagination,
+  rowCount
 }: DataTableProps<TData, TValue>) {
 
   const [sorting, setSorting] = useState<SortingState>([])
@@ -20,13 +26,19 @@ export function DataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+    manualPagination: true,
     getSortedRowModel: getSortedRowModel(),
     state: {
       sorting: sorting,
+      pagination: pagination,
     },
     onSortingChange: setSorting,
+    rowCount: rowCount,
+    onPaginationChange: setPagination
   })
+
+  const firstPosition = table.getState().pagination.pageSize * table.getState().pagination.pageIndex + 1
+  const itemsSoFar = firstPosition + table.getRowModel().rows.length - 1
 
   return (
     <div>
@@ -57,14 +69,27 @@ export function DataTable<TData, TValue>({
         </tbody>
       </table>
 
-      <nav className="flex flex-row-reverse w-[1000px] gap-2 pl-1 pt-3">
-        <button className="bg-white border border-gray-300 rounded py-[2px] px-2 disabled:opacity-40" disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>
-          <FontAwesomeIcon icon={faArrowRight} fontSize={"0.9em"} />
-        </button>
-        <button className="bg-white border border-gray-300 rounded py-[2px] px-2 disabled:opacity-40" disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>
-          <FontAwesomeIcon icon={faArrowLeft} fontSize={"0.9em"} />
-        </button>
-      </nav>
+      <footer className="flex">
+        <nav className="flex justify-between w-[1000px] pl-1 pt-3">
+          <span className="text-xs pt-1 text-slate-600/70 select-none">{firstPosition} - {itemsSoFar} de {rowCount}</span>
+
+          <div className="flex w-[170px] justify-between">
+            <span className="text-xs pt-[7px] text-slate-600/70 select-none">Página {table.getState().pagination.pageIndex + 1} de 2</span>
+            <div className="flex flex-row-reverse gap-2">
+              <button className="bg-white border border-gray-300 rounded py-[2px] px-2 disabled:opacity-40" disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>
+                <FontAwesomeIcon icon={faArrowRight} fontSize={"0.9em"} />
+              </button>
+              <button className="bg-white border border-gray-300 rounded py-[2px] px-2 disabled:opacity-40" disabled={!table.getCanPreviousPage()} onClick={() => table.previousPage()}>
+                <FontAwesomeIcon icon={faArrowLeft} fontSize={"0.9em"} />
+              </button>
+            </div>
+          </div>
+
+
+        </nav>
+      </footer>
+
+
     </div>
   )
 }

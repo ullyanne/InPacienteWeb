@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DataTable } from "./DataTable";
 import { PatientsColumns } from "./PatientsColumns";
 import { SearchBar } from "./SearchBar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { usePatientsApi } from "../api/patients/PatientsApi";
+import { PaginationState } from "@tanstack/react-table";
 
 export type Patient = {
   name: string;
@@ -16,10 +17,14 @@ export type Patient = {
 
 export function Patients() {
   const patientsAPI = usePatientsApi()
+  const [pagination, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  })
 
   useEffect(() => {
-    patientsAPI.getPatientsData()
-  }, [])
+    patientsAPI.getPatientsData(pagination.pageIndex)
+  }, [pagination])
 
   return (
     <div className="mt-[70px] ml-20">
@@ -38,7 +43,7 @@ export function Patients() {
         </div>
       </div>
 
-      <DataTable columns={PatientsColumns} data={patientsAPI.patientsData} />
+      <DataTable columns={PatientsColumns} data={patientsAPI.patientsData} pagination={pagination} setPagination={setPagination} rowCount={patientsAPI.patientsAmount} />
 
     </div>
   )

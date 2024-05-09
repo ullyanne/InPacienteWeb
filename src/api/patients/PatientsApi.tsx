@@ -9,9 +9,11 @@ import { Patient } from "../../components/Patients";
 interface PatientAPIContextType {
   patientsData: Patient[];
   setPatientsData: (data: Patient[]) => void;
+  patientsAmount: number;
+  setPatientsAmount: (data: number) => void;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
-  getPatientsData: () => Promise<void>;
+  getPatientsData: (pageIndex: number) => Promise<void>;
   getPatientData: (id: string | undefined) => Promise<Patient | undefined>;
   createPatientData: SubmitHandler<PatientFormFields>;
   updatePatientData: SubmitHandler<PatientFormFields>;
@@ -24,12 +26,14 @@ const PatientAPIContext = createContext<PatientAPIContextType>({} as PatientAPIC
 
 export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) => {
   const [patientsData, setPatientsData] = useState<Patient[]>([])
+  const [patientsAmount, setPatientsAmount] = useState<number>(0)
   const [searchQuery, setSearchQuery] = useState<string>('')
 
-  const getPatientsData = async () => {
+  const getPatientsData = async (pageIndex = 0) => {
     try {
-      const response = await api.get('/patients')
+      const response = await api.get(`/patients?pageIndex=${pageIndex}`)
       setPatientsData(response.data.patients)
+      setPatientsAmount(response.data.patientsAmount)
     }
     catch (e) {
       console.log(e)
@@ -112,7 +116,9 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
   const value = useMemo(
     () => ({
       patientsData,
+      patientsAmount,
       setPatientsData,
+      setPatientsAmount,
       searchQuery,
       setSearchQuery,
       getPatientsData,
@@ -123,7 +129,7 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
       handleSearchPatientSubmit,
       handleSearchPatientClearSubmit
     }),
-    [patientsData, searchQuery]
+    [patientsData, searchQuery, patientsAmount]
   )
 
   return (
