@@ -74,7 +74,7 @@ export function DataTable<TData, TValue>({
           <span className="text-xs pt-1 text-slate-600/70 select-none">{firstPosition} - {itemsSoFar} de {rowCount}</span>
 
           <div className="flex w-[170px] justify-between">
-            <span className="text-xs pt-[7px] text-slate-600/70 select-none">Página {table.getState().pagination.pageIndex + 1} de 2</span>
+            <span className="text-xs pt-[7px] text-slate-600/70 select-none">Página {table.getState().pagination.pageIndex + 1} de {table.getPageCount()}</span>
             <div className="flex flex-row-reverse gap-2">
               <button className="bg-white border border-gray-300 rounded py-[2px] px-2 disabled:opacity-40" disabled={!table.getCanNextPage()} onClick={() => table.nextPage()}>
                 <FontAwesomeIcon icon={faArrowRight} fontSize={"0.9em"} />
