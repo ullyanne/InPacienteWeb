@@ -10,6 +10,10 @@ import { PatientsCreate } from './components/PatientsCreate.tsx'
 import { Toaster } from 'sonner'
 import { PatientAPIProvider } from './api/patients/PatientsApi.tsx'
 import { PatientsUpdate } from './components/PatientsUpdate.tsx'
+import { AppointmentAPIProvider } from './api/appointments/AppointmentsApi.tsx'
+import { AppointmentsUpdate } from './components/AppointmentsUpdate.tsx'
+import { DoctorAPIProvider } from './api/doctors/DoctorsApi.tsx'
+import { AppointmentsCreate } from './components/AppointmentsCreate.tsx'
 
 const router = createBrowserRouter([
   {
@@ -22,17 +26,25 @@ const router = createBrowserRouter([
         element: <PatientAPIProvider> <Patients /> </PatientAPIProvider>
       },
       {
-        path: '/consultas',
-        element: <Appointments />
-      },
-      {
         path: '/pacientes/novo',
         element: <PatientAPIProvider> <PatientsCreate /> </PatientAPIProvider>
       },
       {
         path: '/pacientes/editar/:cpf',
         element: <PatientAPIProvider> <PatientsUpdate /> </PatientAPIProvider>
-      }
+      },
+      {
+        path: '/consultas',
+        element: <AppointmentAPIProvider> <Appointments /> </AppointmentAPIProvider>
+      },
+      {
+        path: '/consultas/novo',
+        element: <DoctorAPIProvider> <AppointmentAPIProvider> <AppointmentsCreate /> </AppointmentAPIProvider> </DoctorAPIProvider>
+      },
+      {
+        path: '/consultas/editar/:id',
+        element: <DoctorAPIProvider> <AppointmentAPIProvider> <AppointmentsUpdate /> </AppointmentAPIProvider> </DoctorAPIProvider>
+      },
     ]
   },
 ]);

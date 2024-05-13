@@ -5,6 +5,24 @@ import { SubmitHandler } from "react-hook-form";
 import { PatientFormFields } from "../../components/PatientsForm";
 import { Nullable } from "../../types/types";
 import { Patient } from "../../components/Patients";
+import axios from "axios";
+
+export async function doesPatientExist(id: string | undefined): Promise<boolean | undefined> {
+  try {
+    await api.get(`/patients/${id}`)
+    return true
+  }
+  catch (e) {
+    console.log(e)
+    
+    if(axios.isAxiosError(e)){
+      if(e.response?.status == 404){
+        return false
+      }
+    }
+    return undefined
+  }
+}
 
 interface PatientAPIContextType {
   patientsData: Patient[];

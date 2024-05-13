@@ -1,15 +1,9 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Dropdown } from "./Dropdown";
-import { OnAppointmentDeleted } from "./Appointments";
-
-export type Appointment = {
-  id: string
-  doctorName: string;
-  doctorSpecialty: string;
-  patientName: string;
-  date: string;
-}
+import { Appointment } from "./Appointments";
+import moment from 'moment';
+import { useAppointmentsAPI } from "../api/appointments/AppointmentsApi";
 
 export const AppointmentsColumns: ColumnDef<Appointment>[] = [
   {
@@ -70,15 +64,20 @@ export const AppointmentsColumns: ColumnDef<Appointment>[] = [
         </button>
       )
     },
-    cell: (info) => info.getValue(),
+    cell: (info) => {
+      const date = info.getValue()
+      const formattedDate = moment(date as string).format('DD/MM/YYYY [às] HH[h]mm')
+      return formattedDate
+    }
   },
   {
     id: "actions",
     cell: ({ row }) => {
-      const editAppointmentPath = "consultas/editar/" + `${row.original.id}`
+      const appointmentsAPI = useAppointmentsAPI()
+      const editAppointmentPath = "/consultas/editar/" + `${row.original.id}`
       
       return (
-        <Dropdown contentId={row.original.id} onDeleteButton={OnAppointmentDeleted} editInfoPath={editAppointmentPath}/>
+        <Dropdown contentId={row.original.id} onDeleteButton={appointmentsAPI.onAppointmentDeleted} editInfoPath={editAppointmentPath}/>
       )
     }
   }
