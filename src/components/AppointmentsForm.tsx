@@ -49,7 +49,7 @@ export function AppointmentsForm({ pageTitle, buttonTitle, appointmentId, isEdit
 
           setCpf(formattedCpf)
 
-          reset({ ...response, date: formattedDate, patientCpf: formattedCpf })
+          reset({ ...response, date: formattedDate})
         }
         catch (e) {
           console.log(e)
