@@ -66,7 +66,7 @@ export const AppointmentsColumns: ColumnDef<Appointment>[] = [
     },
     cell: (info) => {
       const date = info.getValue()
-      const formattedDate = moment(date as string).format('DD/MM/YYYY [às] HH[h]mm')
+      const formattedDate = moment(date as string).utc().format('DD/MM/YYYY [às] HH[h]mm')
       return formattedDate
     }
   },
