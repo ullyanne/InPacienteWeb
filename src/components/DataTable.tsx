@@ -70,7 +70,7 @@ export function DataTable<TData, TValue>({
       </table>
 
       <footer className="flex">
-        <nav className="flex justify-between w-[1000px] pl-1 pt-3">
+        <nav className="flex justify-between min-w-[1000px] pl-1 pt-3">
           <span className="text-xs pt-1 text-slate-600/70 select-none">{firstPosition} - {itemsSoFar} de {rowCount}</span>
 
           <div className="flex w-[170px] justify-between">

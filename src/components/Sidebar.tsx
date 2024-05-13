@@ -1,13 +1,15 @@
-import { faCalendarDays, faStethoscope, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { faAddressCard, faCalendarDays, faStethoscope, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import { faNotesMedical } from "@fortawesome/free-solid-svg-icons/faNotesMedical";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink, Outlet } from "react-router-dom";
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+import { faLinkedin } from "@fortawesome/free-brands-svg-icons/faLinkedin";
 
 export function Sidebar() {
   return (
     <div className="flex">
-      <nav className="flex-none bg-white h-screen w-60 text-slate-900 shadow-md">
-        <div className=" pl-7">
+      <nav className="flex-none bg-white h-screen w-60 text-slate-900 shadow-md fixed">
+        <div className="pl-7">
           <div className="pt-8 font-bold" >
             <FontAwesomeIcon icon={faNotesMedical} style={{ color: "#2dd4bf", }} fontSize={"2.2em"} />
             <span className="pl-3 text-2xl">InPaciente</span>
@@ -70,8 +72,45 @@ export function Sidebar() {
         </div>
       </nav>
 
-      <div className="w-screen">
+      <div className="w-60" >
+      </div>
+
+      <div className="h-screen flex flex-col justify-between w-full">
         <Outlet />
+
+        <footer className="w-screen -ml-60 text-sm flex flex-col justify-center text-slate-500 mt-16">
+          <div className="flex justify-center mt-10">
+            <div className="flex flex-col">
+              <ul className="flex flex-row justify-center gap-10 mt-3 text-slate-500/80 ">
+                <li className="hover:text-slate-600 transition ease-linear">
+                  <a target="_blank" href="https://ullyanne.vercel.app/">
+                    <FontAwesomeIcon icon={faAddressCard} fontSize="2.1em" />
+                  </a>
+                </li>
+
+                <li className="hover:text-slate-600 transition ease-linear">
+                  <a target="_blank" href="https://github.com/ullyanne/InPacienteweb">
+                    <FontAwesomeIcon icon={faGithub} fontSize="2em" />
+                  </a>
+                </li>
+
+                <li className="hover:text-slate-600 transition ease-linear">
+                  <a target="_blank" href="https://www.linkedin.com/in/ullyanne-patriota/">
+                    <FontAwesomeIcon icon={faLinkedin} fontSize="2.1em" />
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div className="flex justify-center mt-4 mb-5 whitespace-pre">
+            <span>Copyright</span>
+            <span className="text-teal-500"> © </span>
+            <span>2024 Ullyanne</span>
+          </div>
+
+        </footer>
       </div>
 
     </div>

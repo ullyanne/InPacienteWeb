@@ -27,8 +27,8 @@ export function Patients() {
   }, [pagination])
 
   return (
-    <div className="mt-[70px] ml-20">
-      <div className="text-2xl mb-10 px-1 font-semibold">
+    <div className="mt-[70px] ml-20 w-[1000px]">
+      <div className="text-2xl mb-10 pl-1 font-semibold">
         <h1>Pacientes</h1>
       </div>
 
@@ -43,7 +43,10 @@ export function Patients() {
         </div>
       </div>
 
-      <DataTable columns={PatientsColumns} data={patientsAPI.patientsData} pagination={pagination} setPagination={setPagination} rowCount={patientsAPI.patientsAmount} />
+      <div className="w-full overflow-x-auto">
+        <DataTable columns={PatientsColumns} data={patientsAPI.patientsData} pagination={pagination} setPagination={setPagination} rowCount={patientsAPI.patientsAmount} />
+      </div>
+
 
     </div>
   )
