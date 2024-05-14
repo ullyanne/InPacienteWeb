@@ -4,6 +4,7 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as Dialog from "@radix-ui/react-dialog";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { NavLink } from "react-router-dom";
+import { SquarePen, Trash2 } from "lucide-react";
 
 interface DropdownProps {
   contentId: string
@@ -30,17 +31,21 @@ export function Dropdown({ contentId, onDeleteButton, editInfoPath }: DropdownPr
           >
 
             <NavLink to={editInfoPath} >
-              <DropdownMenu.Item className="group text-[13px] leading-none rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[25px] select-none outline-none data-[highlighted]:bg-gray-100"
+              <DropdownMenu.Item className="group text-[13px] leading-none rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[10px] select-none outline-none data-[highlighted]:bg-gray-100"
               >
-                Editar{' '}
+                <SquarePen className="w-4" />
+                <span className="pl-2">
+                  Editar{' '}
+                </span>
+
               </DropdownMenu.Item>
             </NavLink>
 
             <Dialog.Trigger className="w-full" >
-              <DropdownMenu.Item className="group text-[13px] leading-none rounded-[3px] flex items-center w-full h-[25px] px-[5px] relative pl-[25px] select-none outline-none  data-[highlighted]:bg-red-100"
-
+              <DropdownMenu.Item className="group text-[13px] leading-none rounded-[3px] flex items-center  w-full h-[25px] px-[5px] relative pl-[10px] select-none outline-none  data-[highlighted]:bg-red-100 "
               >
-                <span className="text-red-500">
+                <Trash2 className="w-4 text-red-500" />
+                <span className="text-red-500 pl-2">
                   Deletar{' '}
                 </span>
               </DropdownMenu.Item>
