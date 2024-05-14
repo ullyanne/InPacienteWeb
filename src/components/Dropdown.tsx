@@ -4,15 +4,17 @@ import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import * as Dialog from "@radix-ui/react-dialog";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { NavLink } from "react-router-dom";
-import { SquarePen, Trash2 } from "lucide-react";
+import { Eye, SquarePen, Trash2 } from "lucide-react";
 
 interface DropdownProps {
   contentId: string
   onDeleteButton: (contentId: string) => Promise<void>
   editInfoPath: string
+  viewInfoPath?: string
+  isPatientPage: boolean
 }
 
-export function Dropdown({ contentId, onDeleteButton, editInfoPath }: DropdownProps) {
+export function Dropdown({ contentId, onDeleteButton, editInfoPath, viewInfoPath, isPatientPage }: DropdownProps) {
   return (
     <Dialog.Root >
       <DropdownMenu.Root>
@@ -29,7 +31,18 @@ export function Dropdown({ contentId, onDeleteButton, editInfoPath }: DropdownPr
             className="min-w-[120px] bg-white rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade"
             sideOffset={5}
           >
+            {isPatientPage &&
+              <NavLink to={viewInfoPath!} >
+                <DropdownMenu.Item className="group text-[13px] leading-none rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[10px] select-none outline-none data-[highlighted]:bg-gray-100"
+                >
+                  <Eye className="w-4" />
+                  <span className="pl-[7px]">
+                    Visualizar{' '}
+                  </span>
 
+                </DropdownMenu.Item>
+              </NavLink>
+            }
             <NavLink to={editInfoPath} >
               <DropdownMenu.Item className="group text-[13px] leading-none rounded-[3px] flex items-center h-[25px] px-[5px] relative pl-[10px] select-none outline-none data-[highlighted]:bg-gray-100"
               >

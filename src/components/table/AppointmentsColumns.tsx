@@ -77,7 +77,7 @@ export const AppointmentsColumns: ColumnDef<Appointment>[] = [
       const editAppointmentPath = "/consultas/editar/" + `${row.original.id}`
 
       return (
-        <Dropdown contentId={row.original.id} onDeleteButton={appointmentsAPI.onAppointmentDeleted} editInfoPath={editAppointmentPath} />
+        <Dropdown contentId={row.original.id} onDeleteButton={appointmentsAPI.onAppointmentDeleted} editInfoPath={editAppointmentPath} isPatientPage={false} />
       )
     }
   }

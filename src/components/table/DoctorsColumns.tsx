@@ -48,7 +48,7 @@ export const DoctorsColumns: ColumnDef<Doctor>[] = [
       const doctorsAPI = useDoctorsAPI()
       const editDoctorPath = "/medicos/editar/" + `${row.original.crm}`
       return (
-        <Dropdown contentId={row.original.crm} onDeleteButton={doctorsAPI.onDoctorDeleted} editInfoPath={editDoctorPath} />
+        <Dropdown contentId={row.original.crm} onDeleteButton={doctorsAPI.onDoctorDeleted} editInfoPath={editDoctorPath} isPatientPage={false} />
       )
     }
   }

@@ -7,6 +7,15 @@ import { Nullable } from "../../types/types";
 import axios from "axios";
 import { Patient } from "../../components/patients/Patients";
 
+export type PatientAppointments = {
+  id: string;
+  date: string;
+  doctor: {
+    name: string
+    specialty: string
+  };
+}
+
 export async function doesPatientExist(id: string | undefined): Promise<boolean | undefined> {
   try {
     await api.get(`/patients/${id}`)
@@ -33,6 +42,7 @@ interface PatientAPIContextType {
   setSearchQuery: (query: string) => void;
   getPatientsData: (pageIndex: number) => Promise<void>;
   getPatientData: (id: string | undefined) => Promise<Patient | undefined>;
+  getPatientAppointments: (id: string | undefined) => Promise<PatientAppointments[] | undefined>;
   createPatientData: SubmitHandler<PatientFormFields>;
   updatePatientData: SubmitHandler<PatientFormFields>;
   onPatientDeleted: (patientId: string) => Promise<void>;
@@ -73,6 +83,16 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
       await api.post('/patients', data);
 
       toast.success("Paciente criado com sucesso!")
+    }
+    catch (e) {
+      console.log(e)
+    }
+  }
+
+  const getPatientAppointments = async (id: string | undefined): Promise<PatientAppointments[] | undefined> => {
+    try {
+      const response = await api.get(`/patients/${id}/appointments`)
+      return response.data.patientAppointments
     }
     catch (e) {
       console.log(e)
@@ -140,6 +160,7 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
       setSearchQuery,
       getPatientsData,
       getPatientData,
+      getPatientAppointments,
       createPatientData,
       updatePatientData,
       onPatientDeleted,

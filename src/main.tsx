@@ -17,6 +17,7 @@ import { Doctors } from './components/doctors/Doctors.tsx'
 import { DoctorsCreate } from './components/doctors/DoctorsCreate.tsx'
 import { DoctorsUpdate } from './components/doctors/DoctorsUpdate.tsx'
 import { Patients } from './components/patients/Patients.tsx'
+import { PatientView } from './components/patients/PatientView.tsx'
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '/pacientes/editar/:cpf',
         element: <PatientAPIProvider> <PatientsUpdate /> </PatientAPIProvider>
+      },
+      {
+        path: '/pacientes/visualizar/:cpf',
+        element: <PatientAPIProvider> <PatientView /> </PatientAPIProvider>
       },
       {
         path: '/consultas',
