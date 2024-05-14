@@ -108,7 +108,7 @@ export function PatientsForm({ pageTitle, buttonTitle, patientCpf, isEditForm, o
                     unmask={true}
                     onAccept={(value) => field.onChange(value)}
 
-                    className="mt-1 block w-40 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-teal-300 focus:ring-1 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 
+                    className="mt-1 block w-[200px] px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-teal-300 focus:ring-1 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 
                   disabled:cursor-not-allowed"
                   />
 
@@ -120,7 +120,7 @@ export function PatientsForm({ pageTitle, buttonTitle, patientCpf, isEditForm, o
           <div>
             <span className="block text-sm font-medium text-slate-700">Endereço</span>
             <input {...register("address", {
-              required: isEditForm ? "" : "Endereço é obrigatório",
+              required: "Endereço é obrigatório",
               pattern: /^[a-zA-Zà-úÀ-Ú ]+$/
             })}
               type="address"
