@@ -1,8 +1,8 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import { Dropdown } from "./Dropdown";
-import { usePatientsApi } from "../api/patients/PatientsApi";
-import { Patient } from "./Patients";
+import { Dropdown } from "../Dropdown";
+import { usePatientsApi } from "../../api/patients/PatientsApi";
+import { Patient } from "../Patients";
 
 export const PatientsColumns: ColumnDef<Patient>[] = [
   {

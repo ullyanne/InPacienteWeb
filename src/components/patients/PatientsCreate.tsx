@@ -1,5 +1,5 @@
 import { PatientsForm } from "./PatientsForm"
-import { usePatientsApi } from "../api/patients/PatientsApi"
+import { usePatientsApi } from "../../api/patients/PatientsApi"
 
 export function PatientsCreate() {
   const patientsAPI = usePatientsApi()

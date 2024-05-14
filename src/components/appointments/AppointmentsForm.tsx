@@ -1,11 +1,11 @@
 import { Controller, SubmitHandler, useForm, useWatch } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { useAppointmentsAPI } from "../api/appointments/AppointmentsApi";
+import { useAppointmentsAPI } from "../../api/appointments/AppointmentsApi";
 import * as Select from "@radix-ui/react-select";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons/faCheck";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
-import { useDoctorsAPI } from "../api/doctors/DoctorsApi";
+import { useDoctorsAPI } from "../../api/doctors/DoctorsApi";
 import { IMask, IMaskInput } from 'react-imask';
 
 export type AppointmentsFormFields = {

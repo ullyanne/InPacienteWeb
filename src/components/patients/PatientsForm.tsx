@@ -1,6 +1,6 @@
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-import { usePatientsApi } from "../api/patients/PatientsApi";
+import { usePatientsApi } from "../../api/patients/PatientsApi";
 import { IMaskInput } from "react-imask";
 
 export type PatientFormFields = {
@@ -96,7 +96,7 @@ export function PatientsForm({ pageTitle, buttonTitle, patientCpf, isEditForm, o
 
             <div>
               <span className="block text-sm font-medium text-slate-700">Número de telefone</span>
-              
+
               <Controller
                 name="phoneNumber"
                 control={control}

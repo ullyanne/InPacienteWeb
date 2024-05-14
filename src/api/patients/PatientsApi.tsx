@@ -2,10 +2,10 @@ import { BaseSyntheticEvent, createContext, useContext, useMemo, useState } from
 import { api } from "../api"
 import { toast } from "sonner";
 import { SubmitHandler } from "react-hook-form";
-import { PatientFormFields } from "../../components/PatientsForm";
+import { PatientFormFields } from "../../components/patients/PatientsForm";
 import { Nullable } from "../../types/types";
-import { Patient } from "../../components/Patients";
 import axios from "axios";
+import { Patient } from "../../components/patients/Patients";
 
 export async function doesPatientExist(id: string | undefined): Promise<boolean | undefined> {
   try {
@@ -14,9 +14,9 @@ export async function doesPatientExist(id: string | undefined): Promise<boolean 
   }
   catch (e) {
     console.log(e)
-    
-    if(axios.isAxiosError(e)){
-      if(e.response?.status == 404){
+
+    if (axios.isAxiosError(e)) {
+      if (e.response?.status == 404) {
         return false
       }
     }

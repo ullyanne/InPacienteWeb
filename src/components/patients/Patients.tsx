@@ -1,12 +1,12 @@
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { DataTable } from "./DataTable";
-import { PatientsColumns } from "./PatientsColumns";
-import { SearchBar } from "./SearchBar";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { usePatientsApi } from "../api/patients/PatientsApi";
 import { PaginationState } from "@tanstack/react-table";
+import { SearchBar } from "../SearchBar";
+import { usePatientsApi } from "../../api/patients/PatientsApi";
+import { PatientsColumns } from "../table/PatientsColumns";
+import { DataTable } from "../table/DataTable";
 
 export type Patient = {
   name: string;

@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form"
-import { useDoctorsAPI } from "../api/doctors/DoctorsApi"
+import { useDoctorsAPI } from "../../api/doctors/DoctorsApi"
 import { useEffect } from "react"
 
 export type DoctorFormFields = {

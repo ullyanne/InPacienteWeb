@@ -1,8 +1,8 @@
 import { BaseSyntheticEvent, createContext, useContext, useMemo, useState } from "react";
 import { api } from "../api";
-import { Doctor } from "../../components/Doctors";
+import { Doctor } from "../../components/doctors/Doctors";
 import { toast } from "sonner";
-import { DoctorFormFields } from "../../components/DoctorsForm";
+import { DoctorFormFields } from "../../components/doctors/DoctorsForm";
 import { SubmitHandler } from "react-hook-form";
 import { Nullable } from "../../types/types";
 

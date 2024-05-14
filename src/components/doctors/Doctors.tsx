@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useDoctorsAPI } from "../api/doctors/DoctorsApi";
+import { useDoctorsAPI } from "../../api/doctors/DoctorsApi";
 import { PaginationState } from "@tanstack/react-table";
-import { SearchBar } from "./SearchBar";
+import { SearchBar } from "../SearchBar";
 import { NavLink } from "react-router-dom";
-import { DataTable } from "./DataTable";
-import { DoctorsColumns } from "./DoctorsColumns";
+import { DataTable } from "../table/DataTable";
+import { DoctorsColumns } from "../table/DoctorsColumns";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -43,7 +43,7 @@ export function Doctors() {
       </div>
 
       <div className="w-full overflow-x-auto">
-        
+
         <DataTable columns={DoctorsColumns} data={doctorsAPI.doctorsData} pagination={pagination} setPagination={setPagination} rowCount={doctorsAPI.doctorsAmount} />
       </div>
 

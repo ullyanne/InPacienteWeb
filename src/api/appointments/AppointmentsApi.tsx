@@ -1,7 +1,7 @@
 import { BaseSyntheticEvent, createContext, useContext, useMemo, useState } from "react";
-import { Appointment } from "../../components/Appointments";
+import { Appointment } from "../../components/appointments/Appointments";
 import { api } from "../api";
-import { AppointmentsFormFields } from "../../components/AppointmentsForm";
+import { AppointmentsFormFields } from "../../components/appointments/AppointmentsForm";
 import { toast } from "sonner";
 import { SubmitHandler } from "react-hook-form";
 import { Nullable } from "../../types/types";
@@ -52,7 +52,7 @@ export const AppointmentAPIProvider = ({ children }: { children: React.ReactNode
   }
 
   const createAppointmentData: SubmitHandler<AppointmentsFormFields> = async (data: AppointmentsFormFields) => {
-    if(! await doesPatientExist(data.patientCpf)){
+    if (! await doesPatientExist(data.patientCpf)) {
       toast.error("Paciente não existe na base de dados.")
       return
     }
@@ -73,8 +73,8 @@ export const AppointmentAPIProvider = ({ children }: { children: React.ReactNode
       Object.keys(dirtyFields).map((key) => {
         filteredData[key as keyof AppointmentsFormFields] = (data[key as keyof AppointmentsFormFields])
       })
-      
-      if (filteredData.patientCpf != null && ! await doesPatientExist(data.patientCpf)){
+
+      if (filteredData.patientCpf != null && ! await doesPatientExist(data.patientCpf)) {
         toast.error("Paciente não existe na base de dados.")
         return
       }

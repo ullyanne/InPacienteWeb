@@ -1,10 +1,10 @@
-import { DataTable } from "./DataTable";
-import { AppointmentsColumns } from "./AppointmentsColumns";
-import { SearchBar } from "./SearchBar";
+import { DataTable } from "../table/DataTable";
+import { AppointmentsColumns } from "../table/AppointmentsColumns";
+import { SearchBar } from "../SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons/faCirclePlus";
 import { useEffect, useState } from "react";
-import { useAppointmentsAPI } from "../api/appointments/AppointmentsApi";
+import { useAppointmentsAPI } from "../../api/appointments/AppointmentsApi";
 import { PaginationState } from "@tanstack/react-table";
 import { NavLink } from "react-router-dom";
 
