@@ -100,13 +100,12 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
   const onPatientDeleted = async (patientId: string) => {
     try {
       await api.delete(`/patients/${patientId}`)
+      toast.success("Paciente excluído com sucesso!")
       getPatientsData()
     }
     catch (e) {
       console.log(e)
     }
-
-    toast.success("Paciente excluído com sucesso!")
   }
 
   const handleSearchPatientSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
