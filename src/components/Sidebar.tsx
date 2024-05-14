@@ -78,23 +78,23 @@ export function Sidebar() {
       <div className="h-screen flex flex-col justify-between w-full">
         <Outlet />
 
-        <footer className="w-screen -ml-60 text-sm flex flex-col justify-center text-slate-500 mt-16">
+        <footer className="w-screen -ml-60 text-sm flex flex-col justify-center mt-16 text-slate-700/60">
           <div className="flex justify-center mt-10">
             <div className="flex flex-col">
-              <ul className="flex flex-row justify-center gap-10 mt-3 text-slate-500/80 ">
-                <li className="hover:text-slate-600 transition ease-linear">
+              <ul className="flex flex-row justify-center gap-10 mt-3 ">
+                <li className="hover:text-slate-600/90 transition ease-linear">
                   <a target="_blank" href="https://ullyanne.vercel.app/">
                     <FontAwesomeIcon icon={faAddressCard} fontSize="2.1em" />
                   </a>
                 </li>
 
-                <li className="hover:text-slate-600 transition ease-linear">
+                <li className="hover:text-slate-600/90 transition ease-linear">
                   <a target="_blank" href="https://github.com/ullyanne/InPacienteweb">
                     <FontAwesomeIcon icon={faGithub} fontSize="2em" />
                   </a>
                 </li>
 
-                <li className="hover:text-slate-600 transition ease-linear">
+                <li className="hover:text-slate-600/90 transition ease-linear">
                   <a target="_blank" href="https://www.linkedin.com/in/ullyanne-patriota/">
                     <FontAwesomeIcon icon={faLinkedin} fontSize="2.1em" />
                   </a>
