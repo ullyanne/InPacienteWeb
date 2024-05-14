@@ -14,6 +14,9 @@ import { AppointmentAPIProvider } from './api/appointments/AppointmentsApi.tsx'
 import { AppointmentsUpdate } from './components/AppointmentsUpdate.tsx'
 import { DoctorAPIProvider } from './api/doctors/DoctorsApi.tsx'
 import { AppointmentsCreate } from './components/AppointmentsCreate.tsx'
+import { Doctors } from './components/Doctors.tsx'
+import { DoctorsCreate } from './components/DoctorsCreate.tsx'
+import { DoctorsUpdate } from './components/DoctorsUpdate.tsx'
 
 const router = createBrowserRouter([
   {
@@ -44,6 +47,18 @@ const router = createBrowserRouter([
       {
         path: '/consultas/editar/:id',
         element: <DoctorAPIProvider> <AppointmentAPIProvider> <AppointmentsUpdate /> </AppointmentAPIProvider> </DoctorAPIProvider>
+      },
+      {
+        path: '/medicos',
+        element: <DoctorAPIProvider> <Doctors /> </DoctorAPIProvider>
+      },
+      {
+        path: '/medicos/novo',
+        element: <DoctorAPIProvider> <DoctorsCreate /> </DoctorAPIProvider>
+      },
+      {
+        path: '/medicos/editar/:crm',
+        element: <DoctorAPIProvider> <DoctorsUpdate /> </DoctorAPIProvider>
       },
     ]
   },
