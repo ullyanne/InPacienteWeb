@@ -3,6 +3,8 @@ import { ArrowUpDown } from "lucide-react";
 import { Dropdown } from "../Dropdown";
 import { usePatientsApi } from "../../api/patients/PatientsApi";
 import { Patient } from "../patients/Patients";
+import { formatCpf } from "../../utils/CpfFormatter";
+import { formatPhone } from "../../utils/PhoneFormatter";
 
 export const PatientsColumns: ColumnDef<Patient>[] = [
   {
@@ -24,12 +26,16 @@ export const PatientsColumns: ColumnDef<Patient>[] = [
   {
     accessorKey: "cpf",
     header: "CPF",
-    cell: (info) => info.getValue(),
+    cell: ({ row }) => {
+      return formatCpf(row.original.cpf)
+    }
   },
   {
     accessorKey: "phoneNumber",
     header: "Telefone",
-    cell: (info) => info.getValue(),
+    cell: ({ row }) => {
+      return formatPhone(row.original.phoneNumber)
+    }
   },
   {
     accessorKey: "address",
