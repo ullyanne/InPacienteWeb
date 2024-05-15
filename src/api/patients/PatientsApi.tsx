@@ -6,6 +6,7 @@ import { PatientFormFields } from "../../components/patients/PatientsForm";
 import { Nullable } from "../../types/types";
 import axios from "axios";
 import { Patient } from "../../components/patients/Patients";
+import { isCpfValid } from "../../utils/CpfValidator";
 
 export type PatientAppointments = {
   id: string;
@@ -80,12 +81,23 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
 
   const createPatientData: SubmitHandler<PatientFormFields> = async (data: PatientFormFields) => {
     try {
+      if(!isCpfValid(data.cpf)){
+        toast.error("CPF inválido")
+        return
+      }
+      
       await api.post('/patients', data);
 
       toast.success("Paciente criado com sucesso!")
     }
     catch (e) {
       console.log(e)
+
+      if (axios.isAxiosError(e)) {
+        if (e.response?.status == 409) {
+          toast.error("Paciente já existe no banco de dados")
+        }
+      }
     }
   }
 

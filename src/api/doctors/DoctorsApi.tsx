@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { DoctorFormFields } from "../../components/doctors/DoctorsForm";
 import { SubmitHandler } from "react-hook-form";
 import { Nullable } from "../../types/types";
+import axios from "axios";
 
 interface DoctorAPIContextType {
   allDoctorsData: Doctor[];
@@ -56,8 +57,6 @@ export const DoctorAPIProvider = ({ children }: { children: React.ReactNode }) =
     catch (e) {
       console.log(e)
     }
-
-
   }
 
   const getDoctorsData = async (pageIndex = 0) => {
@@ -89,6 +88,12 @@ export const DoctorAPIProvider = ({ children }: { children: React.ReactNode }) =
     }
     catch (e) {
       console.log(e)
+
+      if (axios.isAxiosError(e)) {
+        if (e.response?.status == 409) {
+          toast.error("Médico já existe no banco de dados")
+        }
+      }
     }
   }
 
