@@ -101,6 +101,12 @@ export function PatientsForm({ pageTitle, buttonTitle, patientCpf, isEditForm, o
                 name="phoneNumber"
                 control={control}
                 key={phone}
+                rules={{
+                  minLength: {
+                    value: 11,
+                    message: "Telefone incompleto. Considere adicionar o prefixo 9"
+                  }
+                }}
                 render={({ field }) => (
                   <IMaskInput
                     mask="(00) 00000-0000"
@@ -114,6 +120,7 @@ export function PatientsForm({ pageTitle, buttonTitle, patientCpf, isEditForm, o
 
                 )}
               />
+              {errors.phoneNumber && <div className="text-red-500 text-xs mt-1">{errors.phoneNumber.message}</div>}
             </div>
           </div>
 
@@ -121,7 +128,6 @@ export function PatientsForm({ pageTitle, buttonTitle, patientCpf, isEditForm, o
             <span className="block text-sm font-medium text-slate-700">Endereço</span>
             <input {...register("address", {
               required: "Endereço é obrigatório",
-              pattern: /^[a-zA-Zà-úÀ-Ú ]+$/
             })}
               type="address"
               className="mt-1 block w-96 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-teal-300 focus:ring-1 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
