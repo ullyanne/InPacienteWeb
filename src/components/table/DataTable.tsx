@@ -42,7 +42,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <table className="table-fixed min-w-[1000px] min-h-[300px] divide-y divide-gray-200 border border-collapse overflow-hidden text-left rounded-xl shadow-sm ">
+      <table className="table-fixed min-w-[1100px] min-h-[300px] divide-y divide-gray-200 border border-collapse overflow-hidden text-left rounded-xl shadow-sm ">
         <thead className="text-xs text-gray-700 uppercase bg-white/45">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -70,7 +70,7 @@ export function DataTable<TData, TValue>({
       </table>
 
       <footer className="flex">
-        <nav className="flex justify-between min-w-[1000px] pl-1 pt-3">
+        <nav className="flex justify-between min-w-[1100px] pl-1 pt-3">
           <span className="text-xs pt-1 text-slate-600/70 select-none">{firstPosition} - {itemsSoFar} de {rowCount}</span>
 
           <div className="flex w-[170px] justify-between">

@@ -26,15 +26,15 @@ export function Doctors() {
   }, [pagination])
 
   return (
-    <div className="mt-[70px] ml-20 w-[1000px]">
+    <div className="mt-[70px] ml-20 w-[1100px]">
       <div className="text-2xl mb-10 pl-1 font-semibold">
         <h1>Médicos</h1>
       </div>
 
-      <div className="mb-2 flex justify-between w-[1000px] pb-4">
+      <div className="mb-2 flex justify-between w-[1100px] pb-4">
         <SearchBar searchQuery={doctorsAPI.searchQuery} setSearchQuery={doctorsAPI.setSearchQuery} handleSubmit={doctorsAPI.handleSearchDoctorSubmit} handleClearSubmit={doctorsAPI.handleSearchDoctorClearSubmit} />
 
-        <div className="flex flex-row-reverse w-[1000px]">
+        <div className="flex flex-row-reverse w-[1100px]">
           <NavLink to="/medicos/novo" className="bg-teal-200 border border-gray-300 rounded-lg py-2 px-2 hover:bg-teal-300/80 transition ease-in-out select-none delay-75 flex">
             <FontAwesomeIcon icon={faUserPlus} fontSize={"1.3em"} />
             <span className="pl-2">Novo médico</span>
