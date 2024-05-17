@@ -20,7 +20,7 @@ export function PatientView() {
         }
       }
       catch (e) {
-        console.log(e)
+        (e)
       }
     })();
 
@@ -33,7 +33,7 @@ export function PatientView() {
         setPatientData(response)
       }
       catch (e) {
-        console.log(e)
+        (e)
       }
     })();
 
@@ -48,7 +48,7 @@ export function PatientView() {
   }
 
   return (
-    <div className="mt-[70px] ml-20 px-1">
+    <div className="px-1">
       <div className="text-2xl mb-10  font-semibold">
         <h1>{patientData?.name}</h1>
       </div>
@@ -95,8 +95,6 @@ export function PatientView() {
           </div>
         </div>
       </div>
-
-
     </div>
   )
 }
