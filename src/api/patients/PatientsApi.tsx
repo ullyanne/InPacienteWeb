@@ -23,7 +23,7 @@ export async function doesPatientExist(id: string | undefined): Promise<boolean 
     return true
   }
   catch (e) {
-    console.log(e)
+
 
     if (axios.isAxiosError(e)) {
       if (e.response?.status == 404) {
@@ -65,7 +65,7 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
       setPatientsAmount(response.data.patientsAmount)
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -75,23 +75,23 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
       return response.data.patient
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
   const createPatientData: SubmitHandler<PatientFormFields> = async (data: PatientFormFields) => {
     try {
-      if(!isCpfValid(data.cpf)){
+      if (!isCpfValid(data.cpf)) {
         toast.error("CPF inválido")
         return
       }
-      
+
       await api.post('/patients', data);
 
       toast.success("Paciente criado com sucesso!")
     }
     catch (e) {
-      console.log(e)
+
 
       if (axios.isAxiosError(e)) {
         if (e.response?.status == 409) {
@@ -107,7 +107,7 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
       return response.data.patientAppointments
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -124,7 +124,7 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
         toast.success("Paciente atualizado com sucesso!")
       }
       catch (e) {
-        console.log(e)
+
       }
     }
   }
@@ -136,7 +136,7 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
       getPatientsData()
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -147,7 +147,7 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
       setPatientsData(response.data.patients)
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -158,7 +158,7 @@ export const PatientAPIProvider = ({ children }: { children: React.ReactNode }) 
       setPatientsData(response.data.patients)
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 

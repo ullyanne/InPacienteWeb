@@ -37,7 +37,7 @@ export const AppointmentAPIProvider = ({ children }: { children: React.ReactNode
       setAppointmentsAmount(response.data.appointmentsAmount)
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -47,7 +47,7 @@ export const AppointmentAPIProvider = ({ children }: { children: React.ReactNode
       return response.data.appointment
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -63,7 +63,7 @@ export const AppointmentAPIProvider = ({ children }: { children: React.ReactNode
       toast.success("Consulta criada com sucesso!")
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -85,7 +85,7 @@ export const AppointmentAPIProvider = ({ children }: { children: React.ReactNode
         toast.success("Consulta atualizada com sucesso!")
       }
       catch (e) {
-        console.log(e)
+
       }
     }
   }
@@ -96,7 +96,7 @@ export const AppointmentAPIProvider = ({ children }: { children: React.ReactNode
       getAppointmentsData()
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -107,7 +107,7 @@ export const AppointmentAPIProvider = ({ children }: { children: React.ReactNode
       setAppointmentsData(response.data.appointments)
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -118,7 +118,7 @@ export const AppointmentAPIProvider = ({ children }: { children: React.ReactNode
       setAppointmentsData(response.data.appointments)
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 

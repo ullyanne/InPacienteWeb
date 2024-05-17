@@ -52,7 +52,7 @@ export function AppointmentsForm({ pageTitle, buttonTitle, appointmentId, isEdit
           reset({ ...response, date: formattedDate })
         }
         catch (e) {
-          console.log(e)
+
         }
       })();
     }
@@ -67,7 +67,7 @@ export function AppointmentsForm({ pageTitle, buttonTitle, appointmentId, isEdit
       await doctorsAPI.getAllDoctorsData()
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -182,7 +182,7 @@ export function AppointmentsForm({ pageTitle, buttonTitle, appointmentId, isEdit
             <button className="mt-2 bg-teal-300 hover:bg-teal-400 px-5 py-2.5 text-sm leading-5 rounded-md font-semibold transition ease-linear text-right select-none text-slate-800" type="submit">
               {buttonTitle}
             </button>
-          </div> 
+          </div>
 
         </form>
       </div>

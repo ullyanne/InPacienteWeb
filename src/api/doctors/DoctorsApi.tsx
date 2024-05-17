@@ -55,7 +55,7 @@ export const DoctorAPIProvider = ({ children }: { children: React.ReactNode }) =
       setAllDoctorsData(allDoctors)
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -66,7 +66,7 @@ export const DoctorAPIProvider = ({ children }: { children: React.ReactNode }) =
       setDoctorsAmount(response.data.doctorsAmount)
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -76,7 +76,7 @@ export const DoctorAPIProvider = ({ children }: { children: React.ReactNode }) =
       return response.data.doctor
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -87,7 +87,7 @@ export const DoctorAPIProvider = ({ children }: { children: React.ReactNode }) =
       toast.success("Médico criado com sucesso!")
     }
     catch (e) {
-      console.log(e)
+
 
       if (axios.isAxiosError(e)) {
         if (e.response?.status == 409) {
@@ -110,7 +110,7 @@ export const DoctorAPIProvider = ({ children }: { children: React.ReactNode }) =
         toast.success("Médico atualizado com sucesso!")
       }
       catch (e) {
-        console.log(e)
+
       }
     }
   }
@@ -122,7 +122,7 @@ export const DoctorAPIProvider = ({ children }: { children: React.ReactNode }) =
       getDoctorsData()
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -133,7 +133,7 @@ export const DoctorAPIProvider = ({ children }: { children: React.ReactNode }) =
       setDoctorsData(response.data.doctors)
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 
@@ -144,7 +144,7 @@ export const DoctorAPIProvider = ({ children }: { children: React.ReactNode }) =
       setDoctorsData(response.data.doctors)
     }
     catch (e) {
-      console.log(e)
+
     }
   }
 

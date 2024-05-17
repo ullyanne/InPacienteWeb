@@ -40,7 +40,7 @@ export function PatientsForm({ pageTitle, buttonTitle, patientCpf, isEditForm, o
           reset(response)
         }
         catch (e) {
-          console.log(e)
+
         }
       })();
     }

@@ -30,7 +30,7 @@ export function DoctorsForm({ pageTitle, buttonTitle, doctorCrm, isEditForm, onS
           reset(response)
         }
         catch (e) {
-          console.log(e)
+
         }
       })();
     }
