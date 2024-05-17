@@ -52,7 +52,7 @@ export function PatientsForm({ pageTitle, buttonTitle, patientCpf, isEditForm, o
         <h1>{pageTitle}</h1>
       </div>
 
-      <div className="min-w-96">
+      <div className="max-sm:min-w-96 w-96">
         <form className="flex flex-col gap-4" onSubmit={handleSubmit((data) => onSubmit(data, dirtyFields as any))}>
           <div>
             <span className="block text-sm font-medium text-slate-700">Nome completo</span>
