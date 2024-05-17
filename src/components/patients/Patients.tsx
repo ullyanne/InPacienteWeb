@@ -27,7 +27,7 @@ export function Patients() {
   }, [pagination])
 
   return (
-    <div className="mt-[70px] ml-20 w-[1100px]">
+    <div className="w-[1100px]">
       <div className="text-2xl mb-10 pl-1 font-semibold">
         <h1>Pacientes</h1>
       </div>

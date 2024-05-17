@@ -74,12 +74,12 @@ export function AppointmentsForm({ pageTitle, buttonTitle, appointmentId, isEdit
   const crm = useWatch({ control, name: "doctorCrm" })
 
   return (
-    <div className="mt-[70px] ml-20 px-1">
+    <div className="px-1">
       <div className="text-2xl mb-10  font-semibold">
         <h1>{pageTitle}</h1>
       </div>
 
-      <div className="w-[420px]">
+      <div className="md:w-[470px] min-w-[370px] ">
         <form className="flex flex-col gap-6" onSubmit={handleSubmit((data) => onSubmit(data, dirtyFields as any))}>
 
           <Controller
@@ -90,12 +90,12 @@ export function AppointmentsForm({ pageTitle, buttonTitle, appointmentId, isEdit
             }}
             key={crm}
             render={({ field }) => (
-              <div className="w-[420px]">
+              <div className="md:w-[420px] w-[115px]">
                 <span className="block text-sm font-medium text-slate-700 mb-1">Nome do médico</span>
                 <Select.Root onValueChange={field.onChange} defaultValue={crm}>
                   <Select.Trigger
-                    className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white shadow-[0_2px_10px] shadow-black/10 hover:bg-gray-100/10  focus:ring-1 focus:ring-teal-400 data-[placeholder]:text-violet9 outline-none transition ease-linear "
-                    aria-label="Food"
+                    className="inline-flex items-center justify-center rounded px-[15px] text-[13px] leading-none h-[35px] gap-[5px] bg-white shadow-[0_2px_10px] shadow-black/10 hover:bg-gray-100/10 focus:ring-1 focus:ring-teal-400 outline-none transition ease-linear "
+                    aria-label="Médicos"
                   >
                     <Select.Value placeholder="Selecione um médico…" />
                     <Select.Icon className="pl-2">
@@ -104,7 +104,7 @@ export function AppointmentsForm({ pageTitle, buttonTitle, appointmentId, isEdit
                   </Select.Trigger>
                   <Select.Portal>
                     <Select.Content className="overflow-hidden bg-white rounded-md shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)]">
-                      <Select.ScrollUpButton className="flex items-center justify-center h-[25px] bg-white text-violet11 cursor-default">
+                      <Select.ScrollUpButton className="flex items-center justify-center h-[25px] bg-white cursor-default">
                       </Select.ScrollUpButton>
                       <Select.Viewport className="p-[6px]">
                         <Select.Group>
@@ -115,7 +115,7 @@ export function AppointmentsForm({ pageTitle, buttonTitle, appointmentId, isEdit
                             <Select.Item
                               key={doctor.crm}
                               value={doctor.crm}
-                              className="text-[13px] leading-none text-violet11 rounded-[3px] flex items-center h-[25px] pr-[35px] pl-[25px] relative select-none data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-teal-100 data-[highlighted]:text-slate-900"
+                              className="text-[13px] leading-none rounded-[3px] flex items-center h-[25px] pr-[35px] pl-[25px] relative select-none data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-teal-100 data-[highlighted]:text-slate-900"
                             >
                               <Select.ItemText>{doctor.name}</Select.ItemText>
                               <Select.ItemIndicator className="absolute left-0 w-[25px] inline-flex items-center justify-center">
@@ -123,8 +123,6 @@ export function AppointmentsForm({ pageTitle, buttonTitle, appointmentId, isEdit
                               </Select.ItemIndicator>
                             </Select.Item>
                           ))}
-
-
                         </Select.Group>
                       </Select.Viewport>
                       <Select.ScrollDownButton className="flex items-center justify-center h-[25px] bg-white cursor-default">
@@ -157,7 +155,7 @@ export function AppointmentsForm({ pageTitle, buttonTitle, appointmentId, isEdit
                     unmask={true}
                     onAccept={(value) => field.onChange(value)}
 
-                    className="mt-1 block w-40 px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-teal-300 focus:ring-1 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 
+                    className="mt-1 block px-3 py-2 w-[150px] md:w-[200px] bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-teal-300 focus:ring-1 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500 
                   disabled:cursor-not-allowed"
                   />
 
@@ -174,7 +172,7 @@ export function AppointmentsForm({ pageTitle, buttonTitle, appointmentId, isEdit
                 setValueAs: (value) => value + ":00Z"
               })}
                 type="datetime-local"
-                className="mt-1 block w-[210px] px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-teal-300 focus:ring-1 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
+                className="mt-1 block w-[180px] md:w-[210px] px-3 py-2 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-teal-300 focus:ring-1 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500"
               />
               {errors.date && <div className="text-red-500 text-xs mt-1">{errors.date.message}</div>}
             </div>
@@ -184,7 +182,7 @@ export function AppointmentsForm({ pageTitle, buttonTitle, appointmentId, isEdit
             <button className="mt-2 bg-teal-300 hover:bg-teal-400 px-5 py-2.5 text-sm leading-5 rounded-md font-semibold transition ease-linear text-right select-none text-slate-800" type="submit">
               {buttonTitle}
             </button>
-          </div>
+          </div> 
 
         </form>
       </div>
