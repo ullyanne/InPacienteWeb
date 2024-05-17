@@ -17,7 +17,7 @@ export function Sidebar() {
         <Menu />
       </button>
 
-      <nav className={"md:block flex-none bg-white md:h-screen w-60 text-slate-900 shadow-md lg:fixed z-20 " + (showSidebar ? "block absolute h-screen" : "hidden")}>
+      <nav className={"md:block flex-none bg-white md:h-screen w-60 text-slate-900 shadow-md lg:fixed z-20 " + (showSidebar ? "block fixed h-full" : "hidden")}>
         <div className="pl-7">
           <div className="pt-8 font-bold" >
             <FontAwesomeIcon icon={faNotesMedical} style={{ color: "#2dd4bf", }} fontSize={"2.2em"} />
