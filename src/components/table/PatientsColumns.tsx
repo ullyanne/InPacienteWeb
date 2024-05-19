@@ -49,7 +49,7 @@ export const PatientsColumns: ColumnDef<Patient>[] = [
       const editPatientPath = "/pacientes/editar/" + `${row.original.cpf}`
       const viewPatientPath = "/pacientes/visualizar/" + `${row.original.cpf}`
       return (
-        <Dropdown contentId={row.original.cpf} onDeleteButton={patientsAPI.onPatientDeleted} editInfoPath={editPatientPath} isPatientPage={true} viewInfoPath={viewPatientPath} />
+        <Dropdown contentId={row.original.cpf} onDeleteButton={patientsAPI.onPatientDeleted} editInfoPath={editPatientPath} isPatientPage={true} viewInfoPath={viewPatientPath} deleteMessage="paciente" />
       )
     }
   }
