@@ -11,13 +11,13 @@ export function Sidebar() {
   const [showSidebar, setShowSidebar] = useState(false)
 
   return (
-    <div className="flex max-sm:overflow-y-scroll max-md:flex-col md:overflow-y-hidden">
+    <div className="flex max-sm:overflow-y-scroll max-md:flex-col md:overflow-y-scroll">
 
       <button className="self-start md:hidden ml-5 mt-5" onClick={() => { setShowSidebar(true) }}>
         <Menu />
       </button>
 
-      <nav className={"md:block flex-none bg-white md:h-screen w-60 text-slate-900 shadow-md lg:fixed z-20 " + (showSidebar ? "block fixed h-full" : "hidden")}>
+      <nav className={"md:block flex-none bg-white md:h-screen w-60 text-slate-900 shadow-md md:fixed z-20 " + (showSidebar ? "block fixed h-full" : "hidden")}>
         <div className="pl-7">
           <div className="pt-8 font-bold" >
             <FontAwesomeIcon icon={faNotesMedical} style={{ color: "#2dd4bf", }} fontSize={"2.2em"} />
@@ -83,12 +83,12 @@ export function Sidebar() {
 
       <div onClick={() => { setShowSidebar(false) }} className={"fixed inset-0 bg-black/10 backdrop-blur-sm z-10 " + (showSidebar ? "" : "hidden") }></div>
 
-      <div className="mr-5 w-full lg:ml-60 flex flex-col justify-between h-screen">
+      <div className="mr-5 w-full md:ml-60 flex flex-col justify-between h-screen">
         <div className="md:mt-[70px] mt-10 lg:ml-20 ml-5 md:ml-20">
           <Outlet />
         </div>
 
-        <footer className="ml-5 md:ml-20 lg:ml-20 mb-3 text-sm flex flex-row gap-3 text-slate-700/60 ">
+        <footer className="ml-5 md:ml-20 lg:ml-20 mb-3 pb-4 text-sm flex flex-row gap-3 text-slate-700/60 ">
           <div className="flex mt-4 whitespace-pre">
             <span>Copyright</span>
             <span className="text-teal-500"> © </span>
